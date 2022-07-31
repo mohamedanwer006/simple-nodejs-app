@@ -17,9 +17,9 @@ pipeline {
             - cat
             tty: true
             volumeMounts:
-            - name: kubectl-volume
-              mountPath: /usr/local/bin/kubectl
-              readOnly: true
+             - name: kubectl-config
+               mountPath: /var/root/.kube/config
+               readOnly: true
          
           - name: docker
             image: docker:latest
@@ -46,10 +46,10 @@ pipeline {
           // - name: kubectl-binary
           //   hostPath:
           //     path: /usr/local/bin/kubectl
-          // - name: kubectl-config
-          //   hostPath:
-          //     path: /var/jenkins_home/.kube/config 
-          
+             - name: kubectl-config
+               hostPath:
+                 path: /var/jenkins_home/.kube/config 
+              
             
         '''
     }
