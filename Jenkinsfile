@@ -19,23 +19,25 @@ pipeline {
             volumeMounts:
              - mountPath: /var/run/docker.sock
                name: docker-sock
-            //  - name: kubectl-binary
-            //    mountPath: /usr/local/bin/kubectl
-            //    readOnly: true
-            //  - name: kubectl-config
-            //    mountPath: /var/jenkins_home/.kube/config
-            //    readOnly: true
+             - name: kubectl-binary
+               mountPath: /usr/local/bin/kubectl
+               readOnly: true
+             - name: kubectl-config
+               mountPath: /var/root/.kube/config
+               readOnly: true
 
           volumes:
           - name: docker-sock 
             hostPath:
               path: /var/run/docker.sock 
-          // - name: kubectl-binary
-          //   hostPath:
-          //     path: /usr/local/bin/kubectl
-          // - name: kubectl-config
-          //   hostPath:
-          //     path: /var/jenkins_home/.kube/config   
+          - name: kubectl-binary
+            hostPath:
+              path: /usr/local/bin/kubectl
+          - name: kubectl-config
+            hostPath:
+              path: /var/jenkins_home/.kube/config 
+          
+            
         '''
     }
   }
@@ -93,7 +95,7 @@ pipeline {
                 sh 'kubectl apply -Rf ./k8s/'
        
         }
-    }
+     }
     }
   }
 
