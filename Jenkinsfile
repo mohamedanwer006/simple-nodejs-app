@@ -32,10 +32,10 @@ pipeline {
               path: /var/run/docker.sock 
           - name: kubectl-binary
             hostPath:
-                path: /usr/local/bin/kubectl
+              path: /usr/local/bin/kubectl
           - name: kubectl-config
             hostPath:
-                path: /root/.kube/config   
+              path: /root/.kube/config   
         '''
     }
   }
