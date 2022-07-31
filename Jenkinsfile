@@ -65,7 +65,15 @@ pipeline {
             }
         }
      }
+
+     stage('Deploy') {
+        kubeconfig(credentialsId: 'a9be358c-86ab-472b-9249-0a2c4be05167', serverUrl: '') {
+            sh 'kubectl apply -f ./k8s/namespace.yaml'
+            sh 'kubectl apply -Rf ./k8s/'
+        }
+    }
   }
+
     post {
       always {
             container('docker') {
