@@ -11,6 +11,21 @@ pipeline {
             command:
             - cat
             tty: true
+          - name: kubectl
+            image: bitnami/kubectl:latest
+            command:
+            - cat
+            tty: true
+            volumeMounts:
+            - name: kubectl-volume
+              mountPath: /usr/local/bin/kubectl
+              readOnly: true
+          volumes:
+          - name: kubectl-volume
+            hostPath:
+              path: /usr/local/bin/kubectl
+              type: File
+              
           - name: docker
             image: docker:latest
             command:
@@ -19,23 +34,23 @@ pipeline {
             volumeMounts:
              - mountPath: /var/run/docker.sock
                name: docker-sock
-             - name: kubectl-binary
-               mountPath: /usr/local/bin/kubectl
-               readOnly: true
-             - name: kubectl-config
-               mountPath: /var/root/.kube/config
-               readOnly: true
+            //  - name: kubectl-binary
+            //    mountPath: /usr/local/bin/kubectl
+            //    readOnly: true
+            //  - name: kubectl-config
+            //    mountPath: /var/root/.kube/config
+            //    readOnly: true
 
           volumes:
           - name: docker-sock 
             hostPath:
               path: /var/run/docker.sock 
-          - name: kubectl-binary
-            hostPath:
-              path: /usr/local/bin/kubectl
-          - name: kubectl-config
-            hostPath:
-              path: /var/jenkins_home/.kube/config 
+          // - name: kubectl-binary
+          //   hostPath:
+          //     path: /usr/local/bin/kubectl
+          // - name: kubectl-config
+          //   hostPath:
+          //     path: /var/jenkins_home/.kube/config 
           
             
         '''
