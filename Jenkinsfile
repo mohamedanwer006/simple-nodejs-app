@@ -88,14 +88,14 @@ pipeline {
         //     sh 'kubectl apply -f ./k8s/namespace.yaml'
         //     sh 'kubectl apply -Rf ./k8s/'
         // }
-        container('kubectl'){
+       
           withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'gke-cluster', contextName: '', credentialsId: 'a9be358c-86ab-472b-9249-0a2c4be05167', namespace: 'jenkins-ns', serverUrl: '10.48.0.19:50000']]) {
-             
+             container('kubectl'){
                 sh 'kubectl apply -f ./k8s/namespace.yaml'
                 sh 'kubectl apply -Rf ./k8s/'
-       
+             }
           }
-        }
+        
      }
     }
   }
