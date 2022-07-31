@@ -19,7 +19,7 @@ pipeline {
             tty: true
             volumeMounts:
              - mountPath: /var/root/.kube/config
-               name: kubeconfig
+               name: kubectl-config
          
           - name: docker
             image: docker:latest
