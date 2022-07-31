@@ -18,4 +18,4 @@ jobs:
       run: |
             docker build . --file jenkins.Dockerfile --tag mohameddev006/kubejenkins:latest
             docker login -u ${{ secrets.DOCKER_HUB_USER}} -p ${{secrets.DOCKER_HUB_PASS}}
-            docker push mohameddev006/kubejenkins:latest
+            docker push mohameddev006/kubejenkins:1.0
