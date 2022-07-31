@@ -20,12 +20,7 @@ pipeline {
             - name: kubectl-volume
               mountPath: /usr/local/bin/kubectl
               readOnly: true
-          volumes:
-          - name: kubectl-volume
-            hostPath:
-              path: /usr/local/bin/kubectl
-              type: File
-              
+         
           - name: docker
             image: docker:latest
             command:
@@ -45,6 +40,10 @@ pipeline {
           - name: docker-sock 
             hostPath:
               path: /var/run/docker.sock 
+          - name: kubectl-volume
+            hostPath:
+              path: /usr/local/bin/kubectl
+              type: File
           // - name: kubectl-binary
           //   hostPath:
           //     path: /usr/local/bin/kubectl
