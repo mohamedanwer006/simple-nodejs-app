@@ -43,7 +43,6 @@ pipeline {
           - name: kubectl-volume
             hostPath:
               path: /usr/local/bin/kubectl
-              type: File
           // - name: kubectl-binary
           //   hostPath:
           //     path: /usr/local/bin/kubectl
