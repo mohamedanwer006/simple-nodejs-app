@@ -69,9 +69,15 @@ pipeline {
      stage('Deploy-To-Production') {
         steps{
             echo "======== Deploy To Prouction ========"
-        kubeconfig(credentialsId: 'a9be358c-86ab-472b-9249-0a2c4be05167', serverUrl: '10.52.0.1') {
-            sh 'kubectl apply -f ./k8s/namespace.yaml'
-            sh 'kubectl apply -Rf ./k8s/'
+        // kubeconfig(credentialsId: 'a9be358c-86ab-472b-9249-0a2c4be05167', serverUrl: '10.52.0.1') {
+        //     sh 'kubectl apply -f ./k8s/namespace.yaml'
+        //     sh 'kubectl apply -Rf ./k8s/'
+        // }
+
+        withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'gke-cluster', contextName: '', credentialsId: 'a9be358c-86ab-472b-9249-0a2c4be05167', namespace: 'jenkins-ns', serverUrl: '10.48.0.19:50000']]) {
+    // some block
+     sh 'kubectl apply -f ./k8s/namespace.yaml'
+     sh 'kubectl apply -Rf ./k8s/'
         }
         }
     }
