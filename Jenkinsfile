@@ -20,20 +20,20 @@ pipeline {
              - mountPath: /var/run/docker.sock
                name: docker-sock
             
-             - name: kubectl-binary
-               mountPath: /usr/local/bin/kubectl
-               readOnly: true
-             - name: kubectl-config
-               mountPath: /root/.kube/config
-               readOnly: true
+            //  - name: kubectl-binary
+            //    mountPath: /usr/local/bin/kubectl
+            //    readOnly: true
+            //  - name: kubectl-config
+            //    mountPath: /root/.kube/config
+            //    readOnly: true
           volumes:
-          - name: kubectl-binary
-            hostPath:
-              path: /usr/local/bin/kubectl
-          - name: kubectl-config
-            hostPath:
-              path: /root/.kube/config
-          - name: docker-sock
+        //   - name: kubectl-binary
+        //     hostPath:
+        //       path: /usr/local/bin/kubectl
+        //   - name: kubectl-config
+        //     hostPath:
+        //       path: /root/.kube/config
+          - name: docker-sock 
             hostPath:
               path: /var/run/docker.sock    
         '''
