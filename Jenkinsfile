@@ -23,7 +23,7 @@ pipeline {
                mountPath: /usr/local/bin/kubectl
                readOnly: true
              - name: kubectl-config
-               mountPath: /root/.kube/config
+               mountPath: /var/jenkins_home/.kube/config
                readOnly: true
 
           volumes:
@@ -35,7 +35,7 @@ pipeline {
               path: /usr/local/bin/kubectl
           - name: kubectl-config
             hostPath:
-              path: /root/.kube/config   
+              path: /var/jenkins_home/.kube/config   
         '''
     }
   }
