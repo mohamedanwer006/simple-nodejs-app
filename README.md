@@ -23,7 +23,7 @@ docker run  -d -p 3000:3000 simple-node-app
 
 ![test](assets/test.png)
 
-### Create a CI pipeline 
+### CI pipeline 
 
 ![test](./assets/ci.png)
 
