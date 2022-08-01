@@ -83,29 +83,15 @@ pipeline {
      
 
      stage('Deploy-To-Production') {
-        // steps{
+      // run the the deploy stage on master node
         agent { label 'master' }
         steps {
-            echo "deploy staging"
-            sh "ls"
-
-            sh 'gcloud version'
+           echo "======== Deploy-Stage ========"
           withKubeConfig([namespace: "jenkins-ns", credentialsId: 'a9be358c-86ab-472b-9249-0a2c4be05167']) {
-          sh 'kubectl get po -n jenkins-ns'
+             sh 'kubectl apply -f ./k8s/namespace.yaml'
+             sh 'kubectl apply -Rf ./k8s/'
         }
-            // sh "ls -lrt && touch dep.txt"
-        }
-          
-          // echo "======== Deploy To Prouction ========"
-          // withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'gke-cluster', contextName: '', credentialsId: 'a9be358c-86ab-472b-9249-0a2c4be05167', namespace: 'jenkins-ns', serverUrl: '10.48.0.19:50000']]) {
-          //    container('kubectl'){
-          //       sh 'kubectl apply -f ./k8s/namespace.yaml'
-          //       sh 'kubectl apply -Rf ./k8s/'
-          //    }
-          // }
-
-
-        // }
+        }   
       }
   }
 
@@ -118,35 +104,3 @@ pipeline {
     }
 }
 
-// pipeline{
-//     agent any
-
-//     stages{
-//         stage("Checkout"){
-//             steps{
-//                 echo "======== Executing Checkout ========"
-//               git branch: 'main', changelog: false, poll: false, url: 'https://github.com/mohamedanwer006/simple-nodejs-app.git'
-//             }
-//         }
-
-//         stage("Build"){
-//             steps{
-//                 echo "======== Executing Build ========="
-//                 sh "docker build  -t mohameddev006/simple-nodejs-app:latest ."
-//             }
-//         }
-
-//         stage("stageing"){
-//             steps{
-
-//                 echo "======== Push to Dockerhub ========"
-//                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-//                      sh "docker login -u ${USERNAME} -p ${PASSWORD}"
-//                      sh "docker push mohameddev006/simple-nodejs-app:latest"
-//                     }
-               
-//             }
-//         }
-// // TODO Deploy stage  => run as pod on gke
-//     }
-// }
