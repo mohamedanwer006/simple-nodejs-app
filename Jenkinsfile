@@ -87,6 +87,7 @@ pipeline {
         agent { label 'master' }
         steps {
             echo "deploy staging"
+            sh "ls"
 
             sh 'gcloud version'
             // sh "ls -lrt && touch dep.txt"
