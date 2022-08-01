@@ -87,7 +87,7 @@ pipeline {
         agent { label 'master' }
         steps {
            echo "======== Deploy-Stage ========"
-          withKubeConfig([namespace: "application-ns", credentialsId: 'be0068d0-a63e-4b82-beba-26f0dade2850']) {
+          withKubeConfig([namespace: "application-ns", credentialsId: 'anwer-gcp']) {
             //  sh 'kubectl apply -f ./k8s/namespace.yaml'
              sh 'kubectl apply -Rf ./k8s/ -n application-ns'
         }
