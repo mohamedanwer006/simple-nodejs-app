@@ -12,15 +12,6 @@ pipeline {
             - cat
             tty: true
 
-          - name: kubectl
-            image: bitnami/kubectl:latest
-            command:
-            - cat
-            tty: true
-            volumeMounts:
-             - mountPath: /var/root/.kube/config
-               name: kubectl-config
-         
           - name: docker
             image: docker:latest
             command:
@@ -87,9 +78,9 @@ pipeline {
         agent { label 'master' }
         steps {
            echo "======== Deploy-Stage ========"
-          withKubeConfig([namespace: "jenkins-ns", credentialsId: 'anwer-gcp']) {
-            //  sh 'kubectl apply -f ./k8s/namespace.yaml'
-             sh 'kubectl apply -Rf ./k8s/ -n jenkins-ns'
+          withKubeConfig([namespace: "app-ns", credentialsId: 'myconfig']) {
+             sh 'kubectl apply -f ./k8s/namespace.yaml'
+             sh 'kubectl apply -Rf ./k8s/ -n app-ns'
         }
         }   
       }
