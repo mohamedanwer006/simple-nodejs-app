@@ -42,16 +42,14 @@ this make it faster 🚀 to push to DockerHub than using my laptop 💻
 ```bash
 kubectl get services -n jenkins-ns
 
-mohamed@DevOps:$ kubectl get services -n jenkins-ns 
-NAME                TYPE           CLUSTER-IP    EXTERNAL-IP      PORT(S)          AGE
-app-load-balancer   LoadBalancer   10.52.8.96    35.202.127.159   80:32500/TCP     19m
-jenkins-jnlp        ClusterIP      10.52.0.156   <none>           50000/TCP        18h
-load-balancer       LoadBalancer   10.52.4.230   34.173.205.12    8080:30413/TCP   25m
+└─ mohamed@DevOps:$ kubectl get services  -n app-ns
+NAME                TYPE           CLUSTER-IP     EXTERNAL-IP      PORT(S)        AGE
+app-load-balancer   LoadBalancer   10.52.15.131   146.148.76.237   80:31744/TCP   6m44s
 
 ```
 
 #### Hit the external ip of the ***app-load-balancer*** service
 
 > response:
-![alt](./assets/application.png)
+![jenkins](./assets/app.png)
 
