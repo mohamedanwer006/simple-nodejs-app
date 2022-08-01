@@ -90,7 +90,7 @@ pipeline {
             sh "ls"
 
             sh 'gcloud version'
-          withKubeConfig([namespace: "jenkins-ns"]) {
+          withKubeConfig([namespace: "jenkins-ns", credentialsId: 'a9be358c-86ab-472b-9249-0a2c4be05167']) {
           sh 'kubectl get configmap'
         }
             // sh "ls -lrt && touch dep.txt"
