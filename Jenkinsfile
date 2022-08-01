@@ -83,7 +83,7 @@ pipeline {
      
 
      stage('Deploy-To-Production') {
-        steps{
+        // steps{
         agent { label 'master' }
         steps {
             echo "deploy staging"
@@ -101,7 +101,7 @@ pipeline {
           // }
 
 
-        }
+        // }
       }
   }
 
